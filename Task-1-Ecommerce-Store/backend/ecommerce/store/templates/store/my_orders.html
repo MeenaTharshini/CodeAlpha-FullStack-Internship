@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Orders</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f4f6f8;
+        }
+
+        header {
+            background: #1f2937;
+            color: white;
+            padding: 15px 30px;
+        }
+
+        .container {
+            padding: 30px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        .order-card {
+            background: white;
+            border-radius: 10px;
+            padding: 18px 22px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-left p {
+            margin: 6px 0;
+        }
+
+        .order-id {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+        .status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            background: #e5e7eb;
+        }
+
+        .status.completed {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status.pending {
+            background: #fef9c3;
+            color: #854d0e;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 25px;
+            font-weight: bold;
+            text-decoration: none;
+            color: #2563eb;
+        }
+
+        .empty {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>📦 My Orders</h2>
+</header>
+
+<div class="container">
+
+{% if orders %}
+    {% for order in orders %}
+        <div class="order-card">
+            <div class="order-left">
+                <p class="order-id">Order #{{ order.id }}</p>
+                <p>📅 {{ order.created_at }}</p>
+                <p class="price">₹ {{ order.total_price }}</p>
+            </div>
+
+            <div class="status {% if order.status == 'Completed' %}completed{% else %}pending{% endif %}">
+                {{ order.status }}
+            </div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="empty">
+        <h3>No orders yet 😔</h3>
+        <p>Your orders will appear here once you place them.</p>
+    </div>
+{% endif %}
+
+<a class="back-link" href="/">← Back to Products</a>
+
+</div>
+
+</body>
+</html>

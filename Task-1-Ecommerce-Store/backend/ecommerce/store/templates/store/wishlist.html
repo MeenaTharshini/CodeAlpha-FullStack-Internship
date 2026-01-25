@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Wishlist</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            padding: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .wishlist-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .wishlist-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .wishlist-card h3 {
+            margin: 0;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #16a34a;
+        }
+
+        .empty-msg {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 50px;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 15px;
+            color: #2563eb;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<h1>❤️ My Wishlist</h1>
+
+<div class="wishlist-container">
+
+{% if wishlist_items %}
+    {% for item in wishlist_items %}
+        <div class="wishlist-card">
+            <div>
+                <h3>{{ item.product.name }}</h3>
+                <p class="price">₹ {{ item.product.price }}</p>
+            </div>
+            <div>💖</div>
+        </div>
+    {% endfor %}
+{% else %}
+    <div class="empty-msg">
+        <p>Your wishlist is empty 💔</p>
+    </div>
+{% endif %}
+
+<div class="nav-links">
+    <a href="{% url 'product_list' %}">⬅ Back to Products</a>
+    <a href="{% url 'cart' %}">
+        🛒 My Cart (<strong>{{ request.session.cart|default:"{}"|length }}</strong>)
+    </a>
+</div>
+
+</div>
+
+</body>
+</html>

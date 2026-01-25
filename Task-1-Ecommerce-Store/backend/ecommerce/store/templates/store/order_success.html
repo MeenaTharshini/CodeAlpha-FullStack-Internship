@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Success</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .success-box {
+            background: white;
+            padding: 40px 50px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 420px;
+            width: 90%;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            margin: 10px 0;
+            color: #16a34a;
+        }
+
+        .amount {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #1f2937;
+        }
+
+        .note {
+            color: #6b7280;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #2563eb;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: background 0.2s ease;
+        }
+
+        .btn:hover {
+            background: #1d4ed8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-box">
+    <div class="success-icon">🎉</div>
+    <h1>Order Placed Successfully!</h1>
+
+    <p class="amount">Total Paid: ₹{{ total_price }}</p>
+    <p class="note">Thank you for shopping with us 💖  
+    Your order will be delivered soon.</p>
+
+    <a href="/" class="btn">🛍 Continue Shopping</a>
+</div>
+
+</body>
+</html>
