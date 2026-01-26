@@ -45,6 +45,37 @@
             margin-top: 50px;
         }
 
+        .wishlist-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .wishlist-actions form, .wishlist-actions a {
+            display: inline-block;
+        }
+
+        .btn {
+            padding: 8px 14px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+            color: white;
+        }
+
+        .btn-add {
+            background-color: #225bd4;
+        }
+
+        .btn-remove {
+            background-color: #e96eab;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
         .nav-links {
             text-align: center;
             margin-top: 30px;
@@ -75,7 +106,16 @@
                 <h3>{{ item.product.name }}</h3>
                 <p class="price">₹ {{ item.product.price }}</p>
             </div>
-            <div>💖</div>
+            <div class="wishlist-actions">
+                <!-- Add to Cart -->
+                <a href="{% url 'add_to_cart' item.product.id %}" class="btn btn-add">🛒 Add to Cart</a>
+
+                <!-- Remove from Wishlist -->
+                <form action="{% url 'remove_from_wishlist' item.product.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-remove">💔 Remove</button>
+                </form>
+            </div>
         </div>
     {% endfor %}
 {% else %}

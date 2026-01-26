@@ -215,4 +215,10 @@ def order_success(request, order_id):
         'order': order,
         'total_price': order.total_price
     })
-
+@login_required
+def remove_from_wishlist(request, product_id):
+    Wishlist.objects.filter(
+        user=request.user,
+        product_id=product_id
+    ).delete()
+    return redirect('wishlist')

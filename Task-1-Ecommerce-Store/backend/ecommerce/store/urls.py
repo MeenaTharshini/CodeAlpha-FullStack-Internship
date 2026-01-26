@@ -18,6 +18,7 @@ urlpatterns = [
     path('order-success/<int:order_id>/', views.order_success, name='order_success'),
     path('orders/', views.my_orders, name='my_orders'),
     path('', include('accounts.urls')),
-
+    path('wishlist/remove/<int:product_id>/', views.remove_from_wishlist, name='remove_from_wishlist'),
+    
 
 ]
